@@ -1,0 +1,27 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch CurrencyConversionServiceApplication",
+            "request": "launch",
+            "mainClass": "com.jjh.microservices.currencyconversionservice.CurrencyConversionServiceApplication",
+            "projectName": ""
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch-8000) - CurrencyExchangeServiceApplication",
+            "request": "launch",
+            "mainClass": "com.jjh.microservices.currencyexchangeservice.CurrencyExchangeServiceApplication",
+            "projectName": "currency-exchange-service",
+            "vmArgs": "-Dserver.port=8000"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch-8001) - CurrencyExchangeServiceApplication",
+            "request": "launch",
+            "mainClass": "com.jjh.microservices.currencyexchangeservice.CurrencyExchangeServiceApplication",
+            "projectName": "currency-exchange-service",
+            "vmArgs": "-Dserver.port=8001"
+        }
+    ]
+}
