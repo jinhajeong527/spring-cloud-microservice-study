@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch NamingServerApplication",
+            "request": "launch",
+            "mainClass": "com.jjh.microservices.namingserver.NamingServerApplication",
+            "projectName": "naming-server"
+        },
+        {
+            "type": "java",
             "name": "Launch CurrencyConversionServiceApplication",
             "request": "launch",
             "mainClass": "com.jjh.microservices.currencyconversionservice.CurrencyConversionServiceApplication",
