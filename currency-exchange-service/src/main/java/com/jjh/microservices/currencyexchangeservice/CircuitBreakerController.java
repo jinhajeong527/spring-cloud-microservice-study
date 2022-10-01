@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import io.github.resilience4j.bulkhead.annotation.Bulkhead;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import io.github.resilience4j.retry.annotation.Retry;
 
 
@@ -18,11 +20,16 @@ public class CircuitBreakerController {
     private Logger logger = LoggerFactory.getLogger(CircuitBreakerController.class);
     @GetMapping("/sample-api")
     //@Retry(name = "sample-api", fallbackMethod = "hardcodedResponse") // 첫번째 시도에 성공할 것이므로 재시도되지 않을 것이다. 실패 유발 코드를 추가할 것이다. 
-    @CircuitBreaker(name = "default", fallbackMethod = "hardcodedResponse")
+    //@CircuitBreaker(name = "default", fallbackMethod = "hardcodedResponse")
+    //@RateLimiter(name = "default") // 10초간 sample-api로 오직 10000건의 호출만 허가하겠다. 
+    @Bulkhead(name = "sample-api") // About how many concurrent calls are allowed.
     public String sampleApi() {
         logger.info("Sample Api call received");
-        ResponseEntity<String> forEntity = new RestTemplate().getForEntity("http://localhost:8080/some-dummy-url", String.class);
-        return forEntity.getBody();
+        //ResponseEntity<String> forEntity = 
+        //    new RestTemplate().getForEntity("http://localhost:8080/some-dummy-url", 
+        //                        String.class);
+        //return forEntity.getBody();
+        return "sample-api";
     }
     public String hardcodedResponse(Exception ex) {
         return "fallback-response";
