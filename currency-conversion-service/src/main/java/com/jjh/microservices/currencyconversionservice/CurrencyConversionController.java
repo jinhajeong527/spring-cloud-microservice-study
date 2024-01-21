@@ -28,10 +28,12 @@ public class CurrencyConversionController {
 
         ResponseEntity<CurrencyConversion> responseEntity = 
             new RestTemplate().getForEntity("http://localhost:8000/currency-exchange/from/{from}/to/{to}", 
-        CurrencyConversion.class, uriVariables); // 리스폰스 타입, uri 변수 키와 값 담은 해시맵 
+                                            CurrencyConversion.class, uriVariables); // 리스폰스 타입, uri 변수 키와 값 담은 해시맵
         
         CurrencyConversion currencyConversion = responseEntity.getBody();
-        return new CurrencyConversion(currencyConversion.getId(), from, to, quantity, 
+
+        return new CurrencyConversion(currencyConversion.getId(),
+                                      from, to, quantity,
                                       currencyConversion.getConversionMultiple(),
                                       quantity.multiply(currencyConversion.getConversionMultiple()),
                                       currencyConversion.getEnvironment());
@@ -44,7 +46,8 @@ public class CurrencyConversionController {
         
         CurrencyConversion currencyConversion = currencyExchangeProxy.retrieveExchangeValue(from, to);
 
-        return new CurrencyConversion(currencyConversion.getId(), from, to, quantity, 
+        return new CurrencyConversion(currencyConversion.getId(),
+                                      from, to, quantity,
                                       currencyConversion.getConversionMultiple(),
                                       quantity.multiply(currencyConversion.getConversionMultiple()),
                                       currencyConversion.getEnvironment()+ " "+ "feign");

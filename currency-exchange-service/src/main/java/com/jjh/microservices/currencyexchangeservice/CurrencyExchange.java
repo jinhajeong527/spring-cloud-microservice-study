@@ -11,12 +11,12 @@ public class CurrencyExchange {
 	
 	@Id
     private Long id;
-
 	@Column(name = "currency_from")
-	private String from; //SQL Keyword
+	private String from; // SQL Keyword. name을 따로 할당해주어야 한다.
 	@Column(name = "currency_to")
 	private String to;
-    // we would want to be really really accurate so we use BigDecimal
+
+    // we would want to be really accurate so we use BigDecimal
 	private BigDecimal conversionMultiple;
 	private String environment;
     // JPA를 사용할 경우 인자 없는 생성자가 필요하다.

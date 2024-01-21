@@ -1,7 +1,5 @@
 package com.jjh.microservices.currencyexchangeservice;
 
-import java.math.BigDecimal;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,9 +22,9 @@ public class CurrencyExchangeController {
     public CurrencyExchange retrieveExchangeValue(
         @PathVariable String from, 
         @PathVariable String to) {
-            logger.info("retrieveExchangevalue called with {} to {}", from, to);
+            logger.info("retrieveExchangeValue called with {} to {}", from, to);
             CurrencyExchange currencyExchange = currencyExchangeRepository.findByFromAndTo(from, to);
-            if(currencyExchange == null) {
+            if (currencyExchange == null) {
                 throw new RuntimeException("Unable to Find data for " +from + " to "+ to);
             }
             String port = environment.getProperty("local.server.port");
