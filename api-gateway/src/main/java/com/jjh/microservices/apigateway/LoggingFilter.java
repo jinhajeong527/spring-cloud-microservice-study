@@ -14,8 +14,8 @@ public class LoggingFilter implements GlobalFilter {
     private Logger logger = LoggerFactory.getLogger(LoggingFilter.class);
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
-        logger.info("Path of the request recieved -> {}", exchange.getRequest().getPath());
-        // logging and we are letting the chain continue as is
+        logger.info("Path of the request received -> {}", exchange.getRequest().getPath());
+        // After logging, we want to let the execution continue as it was.
         return chain.filter(exchange);
     }
     
